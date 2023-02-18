@@ -21,16 +21,9 @@ t_box **free_array(t_box **box, int i)
 	size = i;
 	while (i >= 0)
 	{
-		j = size;
-		while (j > 0)
-		{
-			free(box[i][j].array);
-			j--;
-		}
 		free(box[i]);
 		i--;
 	}
-	write (1, "c", 1);
 	free (box);
 	return (NULL);
 }
@@ -52,8 +45,10 @@ int main(int ac, char **av)
 		return (0);
 	}
 	box = create_array(av[1], size);
-	//check_box
-	//ft_solve
+	int i = 0;
+	box = ft_solve(box, size);
+	if(!box)
+		write(1, "Error\n", 6);
 	ft_print(box, size);
 	free_array(box, (size + 1));
 	return (0);

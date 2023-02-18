@@ -35,7 +35,7 @@ int	ft_parsing(char *str)
 		return (0);
 	while (str[i])
 	{
-		if ((str[i] > 48 && str[i] < 58) && (str[i + 1] == 32 || !str[i + 1]))
+		if ((str[i] > 48 && str[i] < 58) && (str[i + 1] == 32 || str[i + 1] == '\0'))
 			count++;
 		i += 2;
 	}
@@ -46,7 +46,7 @@ int	ft_parsing(char *str)
 			return (0);
 		i++;
 	}
-	if (count % 4 != 0 || count > 36)
+	if (--count % 4 != 0 || count > 36)
 		return (0);
 	return (count / 4);
 }

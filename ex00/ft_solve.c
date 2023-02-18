@@ -12,11 +12,13 @@
 
 #include "rush01.h"
 
-int	ft_solve(t_box **grille)
+t_box	**ft_solve(t_box **grille, int size)
 {
-	if (!ft_set_with_arg(grille))
-		return (0);
-	if (!ft_search_value(grille))
-		return (0);
-	return (1);
+	grille = ft_set_with_arg(grille, size);
+	if (!grille)
+		return (NULL);
+	grille = ft_search_value(grille, size);
+	if (!grille)
+		return (NULL);
+	return (grille);
 }

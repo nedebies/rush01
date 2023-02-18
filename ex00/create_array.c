@@ -12,21 +12,27 @@
 
 #include "rush01.h"
 
+static int	ft_exp(int base, int exp)
+{
+	int res;
+	int i;
+
+	res = 1;
+	i = 0;
+	while (i < exp)
+	{
+		res = res * base;
+		i++;
+	}
+	return (res);
+}
+
 static void	set_struct(t_box st, int size)
 {
 	int i;
-
 	i = 0;
-	st.size = size;
 	st.value = 0;
-	st.array = malloc(sizeof(int) * (size - 2));
-	if (!st.array)
-		return ;
-	while (i < size - 1)
-	{
-		st.array[i] = i + 1;
-		i++;
-	}
+	st.array = ft_exp(2, size) - 1;
 }
 
 static t_box	*new_column(int size)
@@ -43,7 +49,6 @@ static t_box	*new_column(int size)
 		set_struct(col[i], size);
 		i++;
 	}
-	col[i].array = NULL;
 	return (col);
 }
 

@@ -36,20 +36,18 @@ static int	ft_set_value(t_box mybox)
 	return (val);
 }
 
-static void	ft_remove_row_line(t_box **grille, int x, int y, int rm)
+static t_box	**ft_remove_row_line(t_box **grille, int x, int y, int rm, int size)
 {
 	int i;
-	int size;
 	int val;
 
-	size = grille[0][0].size;
 	i = 1;
 	while (i < size - 1)
 	{
 		ft_remove(grille[i][y], rm);
 		val = ft_set_value(grille[i][y]);
 		if (val != 0)
-			ft_remove_row_line(grille, i, y, val);
+			ft_remove_row_line(grille, i, y, val, size);
 		i++;
 	}
 	i = 1;
@@ -58,19 +56,19 @@ static void	ft_remove_row_line(t_box **grille, int x, int y, int rm)
 		ft_remove(grille[x][i], rm);
 		val = ft_set_value(grille[x][i]);
 		if (val != 0)
-			ft_remove_row_line(grille, x, i, val);
+			ft_remove_row_line(grille, x, i, val, size);
 		i++;
 	}
+	return (grille);
 }
 
-int ft_search_value(t_box **grille)
+t_box **ft_search_value(t_box **grille, int size)
 {
 	int val;
 	int i;
 	int j;
-	int size;
 
-	size = grille[0][0].size;
+	size += 2;
 	i = 1;
 	while (i < size + 1)
 	{
@@ -79,10 +77,10 @@ int ft_search_value(t_box **grille)
 		{
 			val = ft_set_value(grille[i][j]);
 			if (val != 0)
-				ft_remove_row_line(grille, i, j, val);
+				grille = ft_remove_row_line(grille, i, j, val, size - 2);
 			j++;
 		}
 		i++;
 	}
-	return (val);
+	return (grille);
 }	
