@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include "rush01.h"
 
 static int	ft_strlen(char *str)
 {

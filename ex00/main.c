@@ -12,10 +12,8 @@
 
 #include "rush01.h"
 
-t_box **free_array(t_box **box, int i)
+int **free_array(int **box, int i)
 {
-
-	int j;
 	int size;
 
 	size = i;
@@ -30,9 +28,10 @@ t_box **free_array(t_box **box, int i)
 
 int main(int ac, char **av)
 {
-	t_box	**box;
+	int	**box;
 	int	size;
 
+	box = NULL;
 	if (ac != 2)
 	{
 		write (1, "Error\n", 6);
@@ -45,11 +44,10 @@ int main(int ac, char **av)
 		return (0);
 	}
 	box = create_array(av[1], size);
-	int i = 0;
-	box = ft_solve(box, size);
-	if(!box)
+	if(ft_backtracking(box, size, 1, 1))
 		write(1, "Error\n", 6);
-	ft_print(box, size);
+	else
+		ft_print(box, size);
 	free_array(box, (size + 1));
 	return (0);
 }

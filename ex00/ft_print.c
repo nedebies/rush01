@@ -10,24 +10,22 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-// PROBLEME 6, 10 
-
 #include "rush01.h"
 
-void	ft_print(t_box **box, int size)
+void	ft_print(int **box, int size)
 {
 	int		i;
 	int		j;
 	char	tmp;
 
-	i = 0;
-	j = 0;
-	while (j < (size + 2))
+	i = 1;
+	j = 1;
+	while (j < (size + 1))
 	{
-		i = 0;
-		while (i < size + 2)
+		i = 1;
+		while (i < size + 1)
 		{
-			tmp = (box[i][j].value) + 48;
+			tmp = box[i][j] + 48;
 			write(1, &tmp, 1);
 			i++;
 		}
@@ -35,5 +33,3 @@ void	ft_print(t_box **box, int size)
 		j++;
 	}
 }
-
-// 1 1 1 1 2 2 2 2 3 3 3 3 4 4 4 4 5 5 5 5 6 6 6 6 7 7 7 7 8 8 8 8 9 9 9 9 0 0 0 0 1 1 1 1 2 2 2 2 3 3 3 3 4 4 4 4 5 5 5 5 6 6 6 6
